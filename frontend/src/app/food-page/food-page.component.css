@@ -1,0 +1,87 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 3rem;
+}
+.container > * {
+  min-width: 25rem;
+  max-width: 40rem;
+}
+img {
+  border-radius: 3rem;
+  flex: 1 0;
+  object-fit: cover;
+  height: 30rem;
+  margin: 1rem;
+}
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  flex: 1 0;
+  border-radius: 3rem;
+  padding: 2rem;
+  margin-left: 1rem;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.content .name {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.content .favorite {
+  color: #e72727;
+  font-size: 2.5rem;
+}
+.content .not {
+  color: gray;
+}
+.content .origins {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.content .origins > span {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  color: white;
+  background-color: gray;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  border-radius: 2rem;
+}
+
+.content .cook-time {
+  margin: 1rem;
+}
+.content .cook-time > span {
+  padding: 0.6rem 2rem 0.6rem 0;
+  border-radius: 10rem;
+  font-size: 1.3rem;
+}
+.content .price {
+  font-size: 1.8rem;
+  margin: 1rem 1rem 1rem 0;
+  color: gray;
+}
+.content .price::before {
+  content: "Price: ";
+  color: gray;
+}
+.content button {
+  color: white;
+  background-color: #e72727;
+  border: none;
+  font-size: 1.2rem;
+  padding: 1rem;
+  border-radius: 10rem;
+  outline: none;
+}
+.container button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
