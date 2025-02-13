@@ -2,33 +2,26 @@ import { Injectable } from '@angular/core';
 import { Cart } from '../shared/models/cart';
 import { Foods } from '../shared/models/food';
 import { CartItem } from '../shared/models/cartItem';
+import { environment } from '../environment/environment';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private cart: Cart = new Cart();
-  constructor() {}
+  private apiUrl = environment.apiUrl;
+  constructor(private http: HttpClient) { }
 
-  addToCart(food: Foods): void {
-    let cartItem = this.cart.items.find((item) => item.food.id === food.id);
-    if (cartItem) {
-      this.changeQuantity(food.id, cartItem.quantity + 1);
-      return;
-    }
-    this.cart.items.push(new CartItem(food));
+  addcart(foodData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/cart/add", foodData);
   }
-  removeCart(foodId: any): void {
-    this.cart.items = this.cart.items.filter((item) => item.food.id !== foodId);
+  cartDetails(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/cart/data");
   }
-
-  changeQuantity(foodId: any, quantity: number) {
-    let cartItem = this.cart.items.find((item) => item.food.id === foodId);
-    if (!cartItem) return;
-    cartItem.quantity = quantity;
+  deleteCart(id: any): Observable<any> {
+    return this.http.delete(this.apiUrl + "/cart/delete/" + id)
   }
 
-  getCart(): Cart {
-    return this.cart;
-  }
 }

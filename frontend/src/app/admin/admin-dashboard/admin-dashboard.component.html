@@ -1,0 +1,90 @@
+<div class="container mt-3">
+  <div class="header text-center bg-secondary p-2 text-light">
+    <h3>Admin Dashboard</h3>
+  </div>
+  <div class="tabel-div mt-3">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Food Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Desc</th>
+          <th scope="col">Time</th>
+          <th scope="col">Create</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="food.length>0">
+        <tr *ngFor="let item of food let i=index  ">
+          <th scope="row">{{i+1}}</th>
+          <td>{{item.foodname}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.desc}}</td>
+          <td>{{item.foodtime}}</td>
+          <td>{{item.updatedAt | date}}</td>
+          <td>
+            <div class="gap-2 d-flex">
+              <button type="button" class="btn btn-danger btn-sm" (click)="deletefood(item._id)">
+                Delete
+              </button>
+              <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Add
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Food</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="AdminForm" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Food Name:</label>
+            <input type="text" class="form-control" formControlName="foodname" />
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Price:</label>
+            <input type="number" class="form-control" formControlName="price" />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Desc:</label>
+            <textarea class="form-control" id="message-text" formControlName="desc"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Food Time:</label>
+            <input type="text" class="form-control" formControlName="foodtime" />
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">category:</label>
+            <input type="text" class="form-control" formControlName="category" />
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Food Image:</label>
+            <input type="file" class="form-control" (change)="onFileChange($event)" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button [disabled]="!AdminForm.valid" type="button" class="btn btn-primary" (click)="save()"
+          data-bs-dismiss="modal">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

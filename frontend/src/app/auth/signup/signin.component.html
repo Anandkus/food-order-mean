@@ -1,0 +1,100 @@
+<div class="container mt-3">
+  <div class="header">
+    <h3>Registration</h3>
+  </div>
+  <div class="row">
+    <form [formGroup]="userReg">
+      <div class="col-md-6 border p-1">
+        <div class="mb-3">
+          <label class="form-label">Full Name </label>
+          <input type="text" class="form-control" formControlName="fullname" />
+          <div
+            *ngIf="
+              userReg.get('password')?.invalid &&
+              userReg.get('password')?.touched
+            "
+            class="text-danger"
+          >
+            <small *ngIf="userReg.get('fullname')?.hasError('required')"
+              >fullname is required
+            </small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="name@example.com"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              userReg.get('email')?.invalid && userReg.get('email')?.touched
+            "
+            class="text-danger"
+          >
+            <small *ngIf="userReg.get('email')?.hasError('required')"
+              >Email is required.</small
+            >
+            <small *ngIf="userReg.get('email')?.hasError('email')"
+              >Please enter a valid email.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Contact No.</label>
+          <input type="text" class="form-control" formControlName="mobile" />
+          <div
+            *ngIf="
+              userReg.get('mobile')?.invalid && userReg.get('mobile')?.touched
+            "
+            class="text-danger"
+          >
+            <small *ngIf="userReg.get('mobile')?.hasError('required')"
+              >Mobile number is required.</small
+            >
+            <small *ngIf="userReg.get('mobile')?.hasError('pattern')"
+              >Please enter a valid mobile number (10 digits).</small
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+          />
+          <div
+            *ngIf="
+              userReg.get('password')?.invalid &&
+              userReg.get('password')?.touched
+            "
+            class="text-danger"
+          >
+            <small *ngIf="userReg.get('password')?.hasError('required')"
+              >Password is required.</small
+            >
+            <small *ngIf="userReg.get('password')?.hasError('minlength')"
+              >Password must be at least 6 characters long.</small
+            >
+          </div>
+        </div>
+        <div class="mb-3 text-end">
+          <button
+            class="btn btn-primary"
+            (click)="save()"
+            [disabled]="!userReg.valid"
+          >
+            Submit
+          </button>
+        </div>
+        <div class="text-start">
+          <a routerLink="/login">user for login</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

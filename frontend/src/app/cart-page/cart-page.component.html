@@ -1,22 +1,16 @@
 <div class="container">
   <ul>
-    <li *ngFor="let cartItem of cart.items">
+    <li *ngFor="let cartItem of cartDetails">
       <div>
-        <img
-          src="{{ cartItem.food.imageUrl }}"
-          alt="{{ cartItem.food.name }}"
-        />
+        <img src="{{imagePath+cartItem.foodimg }}" alt="{{cartItem.foodname}}" />
       </div>
       <div>
-        <a routerLink="/food/{{ cartItem.food.id }}">{{
-          cartItem.food.name
-        }}</a>
+        <a>{{
+          cartItem.foodname
+          }}</a>
       </div>
       <div>
-        <select
-          #quantitySelect
-          (change)="changeQuantity(cartItem, quantitySelect.value)"
-        >
+        <select #quantitySelect (change)="changeQuantity(cartItem, quantitySelect.value)">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -27,18 +21,19 @@
         {{ cartItem.price | currency }}
       </div>
       <div>
-        <button class="remove-button" (click)="removeFromCart(cartItem)">
+        <button class="remove-button" (click)="removeFromCart(cartItem._id)">
           Remove
-        </button>
+        </button><br>
+        <a>Qty 1</a>
       </div>
     </li>
   </ul>
   <div class="checkout">
     <div class="food-count">
-      {{ cart.items.length }}
+      {{cartDetails.length}}
     </div>
     <div class="food-price">
-      {{ cart.totalPrice | currency }}
+      {{totalPrice | currency}}
     </div>
     <a routerLink="/checkout">Procced To Checkout</a>
   </div>

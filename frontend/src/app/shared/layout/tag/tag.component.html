@@ -1,11 +1,10 @@
-<div *ngIf="tags" [style.justifyContent]="justifyContent">
-  <ng-container *ngFor="let t of tags">
-    <a routerLink="/tag/{{ t.name }}">{{ t.name }} ({{ t.count }})</a>
+<div *ngIf="categories && categories.length>0" [style.justifyContent]="justifyContent">
+  <a routerLink="/home">All </a>
+  <ng-container *ngFor="let t of categories">
+    <a routerLink="/tag/{{ t.category}}">{{ t.category }} </a>
   </ng-container>
 </div>
 
 <div *ngIf="foodPagetags" [style.justifyContent]="justifyContent">
-  <ng-container *ngFor="let tname of foodPagetags">
-    <a routerLink="/tag/{{ tname }}">{{ tname }} </a>
-  </ng-container>
+  <a>{{ singleTag }} </a>
 </div>

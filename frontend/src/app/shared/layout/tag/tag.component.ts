@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { tag } from '../../models/Tag';
 import { FoodService } from 'src/app/services/food/food.service';
+import { category } from '../../models/food';
 
 @Component({
   selector: 'app-tag',
@@ -8,11 +9,21 @@ import { FoodService } from 'src/app/services/food/food.service';
   styleUrls: ['./tag.component.css'],
 })
 export class TagComponent {
-  @Input() foodPagetags?: string[];
+  @Input() foodPagetags?: any[];
   @Input() justifyContent?: string = 'center';
   tags: tag[] = [];
-  constructor(private fs: FoodService) {}
+  categories: category[] = [];
+  singleTag: any;
+  constructor(private fs: FoodService) { }
+
   ngOnInit() {
-    if (!this.foodPagetags) this.tags = this.fs.getTag();
+    if (this.foodPagetags) {
+      this.singleTag = this.foodPagetags;
+    }
+    else {
+      this.fs.category().subscribe(data => {
+        this.categories = data.category;
+      }, error => { alert(error.error.message) })
+    }
   }
 }

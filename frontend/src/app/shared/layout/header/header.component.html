@@ -4,9 +4,10 @@
     <nav>
       <ul>
         <li>
-          <a href="" routerLink="/cart-page">Cart({{ count }})</a>
-          <a href="" routerLink="/login">Login</a>
-          <a href="">Logout</a>
+          <a *ngIf="user_role === 'buyer'" href="" routerLink="/cart-page">Cart({{ count }})</a>
+          <a *ngIf="!logged_in" routerLink="/login">Login</a>
+          <a *ngIf="logged_in" (click)="logOut()">Logout</a>
+          <a *ngIf="user_name">{{ user_name }}</a>
         </li>
       </ul>
     </nav>

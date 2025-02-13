@@ -1,11 +1,17 @@
 export class Foods {
-  id!: any;
+  _id!: any;
   price!: number;
-  name!: string;
+  foodname!: string;
   favorite: boolean = false;
   star: number = 0;
   tags?: string[];
-  imageUrl!: string;
-  cookTime!: string;
+  category: any;
+  foodimg!: string;
+  foodtime!: string;
   origins!: string[];
+}
+
+export interface category {
+  category: [],
+  message: string;
 }
